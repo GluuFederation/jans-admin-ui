@@ -1,9 +1,10 @@
 const JansConfigApi = require("jans_config_api");
-const cars = {"Access-Control-Allow-Origin: *"};
+const cars = {"Access-Control-Allow-Origin": "*"};
+const defaultClient = JansConfigApi.ApiClient.instance;
 defaultClient.timeout = 50000;
 const jansauth = defaultClient.authentications["jans-auth"];
 defaultClient.basePath = "https://gluu.gasmyr.com".replace(/\/+$/, "");
-defaultClient.defaultHeaders = { "Access-Control-Allow-Origin":{"*"}};
+defaultClient.defaultHeaders = "{'Access-Control-Allow-Origin', '*'}";
 function getApiAccessToken() {
   return (
     localStorage.getItem("gluu.api.token") ||

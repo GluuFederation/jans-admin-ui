@@ -5,11 +5,14 @@ import { Badge } from "reactstrap";
 import { clients } from "../Clients/clients";
 import GluuDialog from "../Gluu/GluuDialog";
 import ClientDetailPage from "../Clients/ClientDetailPage";
-const ClientListPage = () => {
+import { connect, useDispatch } from "react-redux";
+import { getAllOpenidClients } from "../../../redux/actions/OpenidClientsActions";
+const ClientListPage = ({openidClients, loading}) => {
   const history = useHistory();
   const [item, setItem] = useState(clients[0]);
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
+  console.log("===========================1 " + openidClients);
   function getBadgeTheme(status) {
     if (!status) {
       return "primary";
@@ -75,7 +78,7 @@ const ClientListPage = () => {
             )
           }
         ]}
-        data={clients}
+        data={openidClients}
         isLoading={false}
         title="OpenId Connect Clients"
         actions={[
@@ -136,5 +139,13 @@ const ClientListPage = () => {
     </React.Fragment>
   );
 };
+const mapStateToProps = state => ({
+  openidClients: state.openidClientsReducer.openidClients,
+  loading: state.openidClientsReducer.loading
+});
 
-export default ClientListPage;
+const mapDispatchToProps = dispatch => ({
+  getAllOpenidClients: () => dispatch(getAllOpenidClients)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClientListPage);
