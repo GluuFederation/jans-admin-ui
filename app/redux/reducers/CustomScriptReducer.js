@@ -36,11 +36,13 @@ export default (state = INIT_STATE, action) => {
         hasApiError: false
       };      
     case ADD_CUSTOM_SCRIPT:
+      console.log("CustomScriptReducer() - ADD_CUSTOM_SCRIPT");
       return {
         ...state,
         loading: true
       };
     case ADD_CUSTOM_SCRIPT_RESPONSE:
+      console.log("CustomScriptReducer() - ADD_CUSTOM_SCRIPT_RESPONSE");
       return {
         ...state,
         items: [...state.items, action.payload.data],

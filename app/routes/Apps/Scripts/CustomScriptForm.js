@@ -19,25 +19,55 @@ function CustomScriptForm({ item, handleSubmit }) {
       setInit(true);
     }
   }
+  
+ //initial Values
+ //scriptType
+  var scpType = item.scriptType;
+  //console.log("CustomScriptForm - scpType = "+scpType);
+  
+  //programmingLanguage
+  var progLanguage = item.programmingLanguage;
+  //console.log("CustomScriptForm - progLanguage = "+progLanguage);
+  
+  //level
+  var lev = item.level
+  if(lev == null || lev == '') {
+    lev = 0;
+ }
+  //console.log("CustomScriptForm - lev = "+lev);
+  
+  
+  
   const formik = useFormik({
     initialValues: {
       name: item.name,
       description: item.description,
+      script: item.script,
       scriptType: item.scriptType,
-      programmingLanguage: item.programmingLanguage
+      programmingLanguage: item.programmingLanguage,
+      level: item.level
+      
     },
-    validationSchema: Yup.object({
+    /*validationSchema: Yup.object({
       name: Yup.string()
         .min(2, "Mininum 2 characters")
         .required("Required!"),
-      description: Yup.string(),
+      description: Yup.string()
+        .min(2, "Mininum 2 characters")
+        .required("Required!"),
+      script: Yup.string()
+      .min(2, "Mininum 2 characters")
+      .required("Required!"),
       scriptType: Yup.string()
         .min(2, "Mininum 2 characters")
         .required("Required!"),
       programmingLanguage: Yup.string()
         .min(3, "This value is required")
+        .required("Required!"),
+      level: Yup.string()
+        .min(1, "This value is required")
         .required("Required!")
-    }),
+    }),*/
     onSubmit: values => {
       const result = Object.assign(item, values);
       handleSubmit(JSON.stringify(result));
@@ -97,14 +127,14 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
 
       <FormGroup row>
-        <GluuLabel label="Script Type" />
+        <GluuLabel label="Script Type" required/>
         <Col sm={9}>
           <InputGroup>
             <CustomInput
               type="select"
               id="scriptType"
               name="scriptType"
-              defaultValue={item.scriptType}
+              defaultValue={scpType}
               onChange={formik.handleChange}
             >
               <option value="">Choose...</option>
@@ -135,14 +165,14 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
       
       <FormGroup row>
-        <GluuLabel label="Programming Language" />
+        <GluuLabel label="Programming Language" required/>
         <Col sm={9}>
           <InputGroup>
             <CustomInput
               type="select"
               id="programmingLanguage"
               name="programmingLanguage"
-              defaultValue={item.programmingLanguage}
+              defaultValue={progLanguage}
               onChange={formik.handleChange}
             >
               <option value="">Choose...</option>
@@ -155,7 +185,7 @@ function CustomScriptForm({ item, handleSubmit }) {
       
      
       <FormGroup row>
-        <GluuLabel label="Script" />
+        <GluuLabel label="Script" required/>
         <Col sm={9}>
           <Input
             name="script"
@@ -167,12 +197,12 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
       
       <FormGroup row>
-      <GluuLabel label="Level" />
+      <GluuLabel label="Level" required/>
       <Col sm={9}>
         <Input
           name="level"
-          id="level"
-          defaultValue={item.level}
+          id="level"        
+          defaultValue={lev}
           onChange={formik.handleChange}
         />
       </Col>

@@ -45,8 +45,10 @@ export function* getCustomScripts() {
 
 //add
 export function* addScript({ payload }) {
+  console.log("CustomScriptSaga() - addScript() - payload = "+payload);
   try {
     const data = yield call(addCustomScript, payload.data);
+    console.log("CustomScriptSaga() - addScript() - data = "+data);
     yield put(addCustomScriptResponse(data));
   } catch (error) {
     yield put(setApiError(error));

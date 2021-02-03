@@ -16,8 +16,12 @@ export const getAllCustomScript = () => {
 };
 
 export const addCustomScript = data => {
+  console.log("custom-script-api - addCustomScript() - data = "+data);
+  var cScript = createCustomScript(data);
+  console.log("custom-script-api - addCustomScript() - cScript = "+cScript);
   return new Promise((resolve, reject) => {
-    api.postConfigScripts(data, (error, data) => {
+    api.postConfigScripts(cScript, (error, data, response) => {
+      console.log("custom-script-api - addCustomScript() - after postConfigScripts - data = "+data);
       if (error) {
         reject(error);
       } else {
@@ -76,3 +80,13 @@ export const deleteCustomScript = async inum => {
     });
   });
 };
+
+function createCustomScript(data) {
+  console.log("custom-script-api - getCustomScript() - data = "+data);
+  var customScript = new JansConfigApi.CustomScript();
+  customScript = data;
+  console.log("custom-script-api - getCustomScript() - customScript = "+customScript);
+  return customScript;
+  
+}
+

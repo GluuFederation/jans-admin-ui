@@ -8,6 +8,7 @@ function CustomScriptAddPage({ dispatch }) {
   const history = useHistory();
   function handleSubmit(data) {
     if (data) {
+      console.log(" CustomScriptAddPage() - handleSubmit() - data = "+data);
       dispatch(addCustomScript(data));
       history.push("/scripts");
     }
