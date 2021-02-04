@@ -46,16 +46,19 @@ export default (state = INIT_STATE, action) => {
         isAuthenticated: true
       };
     case GET_API_ACCESS_TOKEN:
+      console.log(" GET_API_ACCESS_TOKEN");
       return {
         ...state
       };
 
     case GET_API_ACCESS_TOKEN_RESPONSE:
+      console.log(" AuthReducer.js::: GET_API_ACCESS_TOKEN_RESPONSE - action.payload.accessToken = "+action.payload.accessToken);
       if (action.payload.accessToken) {
         localStorage.setItem("gluu.api.token", action.payload.accessToken);
       }
       return {
-        ...state
+        ...state,
+        isAuthenticated: true
       };
     default:
       return {

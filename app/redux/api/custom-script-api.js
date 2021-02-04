@@ -1,3 +1,4 @@
+import CustomScript from "../../../jans_config_api/dist/model/CustomScript";
 import { getDefaultClient } from "./base";
 const JansConfigApi = require("jans_config_api");
 const api = new JansConfigApi.CustomScriptsApi(getDefaultClient(JansConfigApi));
@@ -83,8 +84,11 @@ export const deleteCustomScript = async inum => {
 
 function createCustomScript(data) {
   console.log("custom-script-api - getCustomScript() - data = "+data);
-  var customScript = new JansConfigApi.CustomScript();
-  customScript = data;
+    customScript = new JansConfigApi.CustomScript();
+    customScript.name = "test_script_8";
+    customScript.description = "test_description";
+    customScript.scriptType = 'PERSON_AUTHENTICATION';
+    customScript.programmingLanguage = "JAVASCRIPT";
   console.log("custom-script-api - getCustomScript() - customScript = "+customScript);
   return customScript;
   

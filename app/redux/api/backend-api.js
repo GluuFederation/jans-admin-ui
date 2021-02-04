@@ -35,9 +35,11 @@ export const fetchServerConfiguration = async () => {
 
 // Retrieve user information
 export const fetchUserInformation = async code => {
+  console.log(" backend-api.js::: fetchUserInformation() - Entry");
   return await axios
     .post("/oauth2/user-info", {
       code: code
+      .console.log(" backend-api.js::: fetchUserInformation() - code = "+code)
     })
     .then(response => response.data)
     .catch(error => {
@@ -51,9 +53,11 @@ export const fetchUserInformation = async code => {
 
 // Get API Access Token
 export const fetchApiAccessToken = async () => {
+  console.log(" backend-api.js::: fetchApiAccessToken() - Entry");
   return await axios
     .post("/oauth2/api-protection-token", { scope: defaultScopes })
     .then(response => response.data)
+    .console.log(" backend-api.js::: fetchApiAccessToken() - response.data = "+response.data)
     .catch(error => {
       console.error(
         "Problems getting API access token in order to process api calls.",

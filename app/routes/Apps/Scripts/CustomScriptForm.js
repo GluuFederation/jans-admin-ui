@@ -12,6 +12,7 @@ import {
 } from "./../../../components";
 import GluuFooter from "../Gluu/GluuFooter";
 import GluuLabel from "../Gluu/GluuLabel";
+import SimpleCustomProperty from "./../../../components"
 function CustomScriptForm({ item, handleSubmit }) {
   const [init, setInit] = useState(false);
   function toogle() {
@@ -19,25 +20,29 @@ function CustomScriptForm({ item, handleSubmit }) {
       setInit(true);
     }
   }
-  
- //initial Values
- //scriptType
+
+
+    function handleAddProperty(data) {
+            console.log(" CustomScriptForm() - handleAddProperty() ");
+        ReactDOM.render(<SimpleCustomPropertyp />, document.getElementById('container'));
+    }
+
+  //initial Values
+  //scriptType
   var scpType = item.scriptType;
   //console.log("CustomScriptForm - scpType = "+scpType);
-  
+
   //programmingLanguage
   var progLanguage = item.programmingLanguage;
   //console.log("CustomScriptForm - progLanguage = "+progLanguage);
-  
+
   //level
-  var lev = item.level
-  if(lev == null || lev == '') {
+  var lev = item.level;
+  if (lev == null || lev == "") {
     lev = 0;
- }
+  }
   //console.log("CustomScriptForm - lev = "+lev);
-  
-  
-  
+
   const formik = useFormik({
     initialValues: {
       name: item.name,
@@ -46,7 +51,6 @@ function CustomScriptForm({ item, handleSubmit }) {
       scriptType: item.scriptType,
       programmingLanguage: item.programmingLanguage,
       level: item.level
-      
     },
     /*validationSchema: Yup.object({
       name: Yup.string()
@@ -127,10 +131,11 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
 
       <FormGroup row>
-        <GluuLabel label="Script Type" required/>
+        <GluuLabel label="Script Type" required />
         <Col sm={9}>
           <InputGroup>
             <CustomInput
+              placeholder="Please select script type"
               type="select"
               id="scriptType"
               name="scriptType"
@@ -163,15 +168,16 @@ function CustomScriptForm({ item, handleSubmit }) {
           </InputGroup>
         </Col>
       </FormGroup>
-      
+
       <FormGroup row>
-        <GluuLabel label="Programming Language" required/>
+        <GluuLabel label="Programming Language" required />
         <Col sm={9}>
           <InputGroup>
             <CustomInput
               type="select"
               id="programmingLanguage"
               name="programmingLanguage"
+              placeholder="Please select script programming language"
               defaultValue={progLanguage}
               onChange={formik.handleChange}
             >
@@ -182,50 +188,65 @@ function CustomScriptForm({ item, handleSubmit }) {
           </InputGroup>
         </Col>
       </FormGroup>
-      
-     
+
       <FormGroup row>
-        <GluuLabel label="Script" required/>
+        <GluuLabel label="Script" required />
         <Col sm={9}>
           <Input
+            type="textarea"
             name="script"
             id="script"
+            placeholder="Please enter script..."
             defaultValue={item.script}
             onChange={formik.handleChange}
           />
         </Col>
       </FormGroup>
-      
+
       <FormGroup row>
-      <GluuLabel label="Level" required/>
-      <Col sm={9}>
-        <Input
-          name="level"
-          id="level"        
-          defaultValue={lev}
-          onChange={formik.handleChange}
-        />
-      </Col>
-    </FormGroup>
-    
-    <FormGroup row>
-    <GluuLabel label="Revision" />
-    <Col sm={9}>
-      <Input
-        name="revision"
-        id="revision"
-        defaultValue={item.revision}
-        onChange={formik.handleChange}
-      />
-    </Col>
-  </FormGroup>
-        
+        <GluuLabel label="Level" required />
+        <Col sm={9}>
+          <Input
+            name="level"
+            id="level"
+            placeholder="Please enter script level"
+            defaultValue={lev}
+            onChange={formik.handleChange}
+          />
+        </Col>
+      </FormGroup>
+
+      <FormGroup row>
+        <GluuLabel label="Revision" />
+        <Col sm={9}>
+          <Input
+            name="revision"
+            id="revision"
+            placeholder="Please enter script revision"
+            defaultValue={item.revision}
+            onChange={formik.handleChange}
+          />
+        </Col>
+      </FormGroup>
+
+      <FormGroup row>
+              <GluuLabel label="Module property (key/value)" size={3} />
+              <Col sm={1}>
+                  <Button color="primary" type="add" onSubmit="handleAddProperty()"> Add new property </Button>
+        </Col>
+      </FormGroup>
+
+          <div id="container">
+              //This element's contents will be replaced with your component.
+</div>
+
       <FormGroup row>
         <GluuLabel label="Enabled" size={3} />
         <Col sm={1}>
           <Input
             id="enabled"
             name="enabled"
+            placeholder="Select checkbox to enable the script"
             onChange={formik.handleChange}
             type="checkbox"
             defaultChecked={item.enabled}
@@ -233,7 +254,7 @@ function CustomScriptForm({ item, handleSubmit }) {
         </Col>
       </FormGroup>
 
-      <FormGroup row></FormGroup>
+      <FormGroup row />
       <GluuFooter />
     </Form>
   );
