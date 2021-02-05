@@ -18,7 +18,7 @@ class SimpleCustomProperty extends React.Component {
   createUI(){
      return this.state.dataArr.map((el, i) => (
        <div key={i}>
-    	  <input placeholder="Value1" name="value1" value={el.value1 ||''} onChange={this.handleChange.bind(this, i)} />
+    	   <input placeholder="Value1" name="value1" value={el.value1 ||''} onChange={this.handleChange.bind(this, i)} />
           <input placeholder="Value2" name="value2" value={el.value2 ||''} onChange={this.handleChange.bind(this, i)} />
           <input placeholder="Description" name="description" value={el.description ||''} onChange={this.handleChange.bind(this, i)} />
     	  <input type='button' value='remove' onClick={this.removeClick.bind(this, i)}/>
