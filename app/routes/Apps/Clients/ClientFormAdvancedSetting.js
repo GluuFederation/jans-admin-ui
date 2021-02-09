@@ -20,7 +20,6 @@ import {
 import SimpleCustomProperty from "jans_config_api/dist/model/SimpleCustomProperty";
 
 
-function
 function takeFocus(x) {
     x.focus();
 }

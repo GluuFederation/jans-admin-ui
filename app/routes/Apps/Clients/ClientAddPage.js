@@ -1,18 +1,33 @@
 import React from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Container, CardBody, Card } from "./../../../components";
-import ClientForm from "./ClientForm";
-function ClientAddPage() {
-  return (
-    <React.Fragment>
-      <Container>
-        <Card className="mb-3">
-          <CardBody>
-            <ClientForm />
-          </CardBody>
-        </Card>
-      </Container>
-    </React.Fragment>
-  );
+import AttributeForm from "./AttributeForm";
+import { addAttribute } from "../../../redux/actions/OpenidClientActions";
+function AttributeAddPage({ dispatch }) {
+    const history = useHistory();
+    function handleSubmit(data) {
+        if (data) {
+            dispatch(addAttribute(data));
+            history.push("/attributes");
+        }
+    }
+    return (
+        <React.Fragment>
+            <Container>
+                <Card className="mb-3">
+                    <CardBody>
+                        <AttributeForm item={new Object()} handleSubmit={handleSubmit} />
+                    </CardBody>
+                </Card>
+            </Container>
+        </React.Fragment>
+    );
 }
-
-export default ClientAddPage;
+const mapStateToProps = state => {
+    return {
+        loading: state.attributeReducer.loading,
+        hasApiError: state.attributeReducer.hasApiError
+    };
+};
+export default connect(mapStateToProps)(AttributeAddPage);
