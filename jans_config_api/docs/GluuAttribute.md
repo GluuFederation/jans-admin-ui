@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **salt** | **String** |  | [optional] 
 **nameIdType** | **String** |  | [optional] 
 **origin** | **String** |  | [optional] 
-**editType** | **[String]** | GluuUserRole | [optional] 
+**editType** | **[String]** | GluuUserRole | 
 **viewType** | **[String]** | GluuUserRole | 
 **usageType** | **[String]** | GluuAttributeUsageType | [optional] 
 **claimName** | **String** |  | [optional] 

@@ -8,10 +8,5 @@ function ClientAddPage() {
     </React.Fragment>
   );
 }
-const mapStateToProps = state => {
-    return {
-        loading: state.attributeReducer.loading,
-        hasApiError: state.attributeReducer.hasApiError
-    };
-};
-export default connect(mapStateToProps)(AttributeAddPage);
+
+export default ClientAddPage;
