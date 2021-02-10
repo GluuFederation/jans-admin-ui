@@ -1,3 +1,4 @@
+import CustomScript from "../../../jans_config_api/dist/model/CustomScript";
 import { getDefaultClient } from "./base";
 const JansConfigApi = require("jans_config_api");
 const api = new JansConfigApi.CustomScriptsApi(getDefaultClient(JansConfigApi));
@@ -16,8 +17,12 @@ export const getAllCustomScript = () => {
 };
 
 export const addCustomScript = data => {
+  console.log("custom-script-api - addCustomScript() - data = "+data);
+  var cScript = createCustomScript(data);
+  console.log("custom-script-api - addCustomScript() - cScript = "+cScript);
   return new Promise((resolve, reject) => {
-    api.postConfigScripts(data, (error, data) => {
+    api.postConfigScripts(cScript, (error, data, response) => {
+      console.log("custom-script-api - addCustomScript() - after postConfigScripts - data = "+data);
       if (error) {
         reject(error);
       } else {
@@ -76,3 +81,16 @@ export const deleteCustomScript = async inum => {
     });
   });
 };
+
+function createCustomScript(data) {
+  console.log("custom-script-api - getCustomScript() - data = "+data);
+    customScript = new JansConfigApi.CustomScript();
+    customScript.name = "test_script_8";
+    customScript.description = "test_description";
+    customScript.scriptType = 'PERSON_AUTHENTICATION';
+    customScript.programmingLanguage = "JAVASCRIPT";
+  console.log("custom-script-api - getCustomScript() - customScript = "+customScript);
+  return customScript;
+  
+}
+

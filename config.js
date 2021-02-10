@@ -22,6 +22,9 @@ const config = {
   siteDescription: "Jans-server admin Ui",
   siteCannonicalUrl: "http://localhost:4100",
   siteKeywords: "jans-server oauth jans gluu",
-  scssIncludes: []
+  scssIncludes: [],
+  
+  //console log
+  enableLog: true
 };
 module.exports = config;

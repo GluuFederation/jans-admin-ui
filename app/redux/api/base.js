@@ -12,5 +12,7 @@ export const getDefaultClient = JansConfigApi => {
   };
   defaultClient.defaultHeaders = headers;
   jansauth.accessToken = localStorage.getItem("gluu.api.token");
+  console.log(" ui/app/redux/api/base.js::: getDefaultClient() - localStorage.getItem(\"gluu.api.token\") = "+localStorage.getItem("gluu.api.token"));
+  console.log(" ui/app/redux/api/base.js::: getDefaultClient() - jansauth.accessToken = "+jansauth.accessToken);
   return defaultClient;
 };

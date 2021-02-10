@@ -12,6 +12,7 @@ import {
 } from "./../../../components";
 import GluuFooter from "../Gluu/GluuFooter";
 import GluuLabel from "../Gluu/GluuLabel";
+import SimpleCustomProperty from "./../../../components"
 function CustomScriptForm({ item, handleSubmit }) {
   const [init, setInit] = useState(false);
   function toogle() {
@@ -19,25 +20,58 @@ function CustomScriptForm({ item, handleSubmit }) {
       setInit(true);
     }
   }
+
+
+    function handleAddProperty(data) {
+            console.log(" CustomScriptForm() - handleAddProperty() ");
+        ReactDOM.render(<SimpleCustomPropertyp />, document.getElementById('container'));
+    }
+
+  //initial Values
+  //scriptType
+  var scpType = item.scriptType;
+  //console.log("CustomScriptForm - scpType = "+scpType);
+
+  //programmingLanguage
+  var progLanguage = item.programmingLanguage;
+  //console.log("CustomScriptForm - progLanguage = "+progLanguage);
+
+  //level
+  var lev = item.level;
+  if (lev == null || lev == "") {
+    lev = 0;
+  }
+  //console.log("CustomScriptForm - lev = "+lev);
+
   const formik = useFormik({
     initialValues: {
       name: item.name,
       description: item.description,
+      script: item.script,
       scriptType: item.scriptType,
-      programmingLanguage: item.programmingLanguage
+      programmingLanguage: item.programmingLanguage,
+      level: item.level
     },
-    validationSchema: Yup.object({
+    /*validationSchema: Yup.object({
       name: Yup.string()
         .min(2, "Mininum 2 characters")
         .required("Required!"),
-      description: Yup.string(),
+      description: Yup.string()
+        .min(2, "Mininum 2 characters")
+        .required("Required!"),
+      script: Yup.string()
+      .min(2, "Mininum 2 characters")
+      .required("Required!"),
       scriptType: Yup.string()
         .min(2, "Mininum 2 characters")
         .required("Required!"),
       programmingLanguage: Yup.string()
         .min(3, "This value is required")
+        .required("Required!"),
+      level: Yup.string()
+        .min(1, "This value is required")
         .required("Required!")
-    }),
+    }),*/
     onSubmit: values => {
       const result = Object.assign(item, values);
       handleSubmit(JSON.stringify(result));
@@ -97,14 +131,15 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
 
       <FormGroup row>
-        <GluuLabel label="Script Type" />
+        <GluuLabel label="Script Type" required />
         <Col sm={9}>
           <InputGroup>
             <CustomInput
+              placeholder="Please select script type"
               type="select"
               id="scriptType"
               name="scriptType"
-              defaultValue={item.scriptType}
+              defaultValue={scpType}
               onChange={formik.handleChange}
             >
               <option value="">Choose...</option>
@@ -135,14 +170,15 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
 
       <FormGroup row>
-        <GluuLabel label="Programming Language" />
+        <GluuLabel label="Programming Language" required />
         <Col sm={9}>
           <InputGroup>
             <CustomInput
               type="select"
               id="programmingLanguage"
               name="programmingLanguage"
-              defaultValue={item.programmingLanguage}
+              placeholder="Please select script programming language"
+              defaultValue={progLanguage}
               onChange={formik.handleChange}
             >
               <option value="">Choose...</option>
@@ -154,11 +190,13 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
 
       <FormGroup row>
-        <GluuLabel label="Script" />
+        <GluuLabel label="Script" required />
         <Col sm={9}>
           <Input
+            type="textarea"
             name="script"
             id="script"
+            placeholder="Please enter script..."
             defaultValue={item.script}
             onChange={formik.handleChange}
           />
@@ -166,12 +204,13 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
 
       <FormGroup row>
-        <GluuLabel label="Level" />
+        <GluuLabel label="Level" required />
         <Col sm={9}>
           <Input
             name="level"
             id="level"
-            defaultValue={item.level}
+            placeholder="Please enter script level"
+            defaultValue={lev}
             onChange={formik.handleChange}
           />
         </Col>
@@ -183,6 +222,7 @@ function CustomScriptForm({ item, handleSubmit }) {
           <Input
             name="revision"
             id="revision"
+            placeholder="Please enter script revision"
             defaultValue={item.revision}
             onChange={formik.handleChange}
           />
@@ -190,11 +230,23 @@ function CustomScriptForm({ item, handleSubmit }) {
       </FormGroup>
 
       <FormGroup row>
+              <GluuLabel label="Module property (key/value)" size={3} />
+              <Col sm={1}>
+                  <Button color="primary" type="add" onSubmit="handleAddProperty()"> Add new property </Button>
+        </Col>
+      </FormGroup>
+
+          <div id="container">
+              //This element's contents will be replaced with your component.
+</div>
+
+      <FormGroup row>
         <GluuLabel label="Enabled" size={3} />
         <Col sm={1}>
           <Input
             id="enabled"
             name="enabled"
+            placeholder="Select checkbox to enable the script"
             onChange={formik.handleChange}
             type="checkbox"
             defaultChecked={item.enabled}
@@ -202,7 +254,7 @@ function CustomScriptForm({ item, handleSubmit }) {
         </Col>
       </FormGroup>
 
-      <FormGroup row></FormGroup>
+      <FormGroup row />
       <GluuFooter />
     </Form>
   );
