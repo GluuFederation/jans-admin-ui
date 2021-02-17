@@ -1,5 +1,5 @@
-import React from "react";
-import { Col, Button, FormGroup } from "./../../../components";
+import React from 'react'
+import { Col, Button, FormGroup, Divider } from './../../../components'
 function GluuFooter() {
   return (
     <FormGroup row>
@@ -17,4 +17,4 @@ function GluuFooter() {
   );
 }
 
-export default GluuFooter;
+export default GluuFooter

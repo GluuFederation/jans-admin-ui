@@ -29,11 +29,12 @@ class GluuAttribute {
      * @param description {String} User friendly descriptive detail of attribute.
      * @param dataType {module:model/GluuAttribute.DataTypeEnum} Data Type of attribute.
      * @param status {module:model/GluuAttribute.StatusEnum} Attrubute status
+     * @param editType {Array.<module:model/GluuAttribute.EditTypeEnum>} GluuUserRole
      * @param viewType {Array.<module:model/GluuAttribute.ViewTypeEnum>} GluuUserRole
      */
-    constructor(name, displayName, description, dataType, status, viewType) { 
+    constructor(name, displayName, description, dataType, status, editType, viewType) { 
         
-        GluuAttribute.initialize(this, name, displayName, description, dataType, status, viewType);
+        GluuAttribute.initialize(this, name, displayName, description, dataType, status, editType, viewType);
     }
 
     /**
@@ -41,12 +42,13 @@ class GluuAttribute {
      * This method is used by the constructors of any subclasses, in order to implement multiple inheritance (mix-ins).
      * Only for internal use.
      */
-    static initialize(obj, name, displayName, description, dataType, status, viewType) { 
+    static initialize(obj, name, displayName, description, dataType, status, editType, viewType) { 
         obj['name'] = name;
         obj['displayName'] = displayName;
         obj['description'] = description;
         obj['dataType'] = dataType;
         obj['status'] = status;
+        obj['editType'] = editType;
         obj['viewType'] = viewType;
     }
 
