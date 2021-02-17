@@ -45,7 +45,7 @@ export const SidebarMiddleNav = () => (
     {/* -------- Scopes ---------*/}
     {/* -------- Plugins ---------*/}
     {items.map((item, key) => (
-      <SidebarMenu.Item key={key} title={item.title}></SidebarMenu.Item>
+      <SidebarMenu.Item key={key} title={item.title} icon={item.icon}></SidebarMenu.Item>
     ))}
     {/* -------- Configuration ---------*/}
     <Divider />

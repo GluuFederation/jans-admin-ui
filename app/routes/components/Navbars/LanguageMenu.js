@@ -21,7 +21,7 @@ const LanguageMenu = () => {
       <DropdownToggle caret color="primary">
         {lang}
       </DropdownToggle>
-      <DropdownMenu>
+      <DropdownMenu right>
         <DropdownItem onClick={() => changeLanguage("fr")}>
           {t("french")}
         </DropdownItem>

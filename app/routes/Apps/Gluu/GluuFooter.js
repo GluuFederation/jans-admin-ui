@@ -3,16 +3,15 @@ import { Col, Button, FormGroup } from "./../../../components";
 function GluuFooter() {
   return (
     <FormGroup row>
-      <Col sm={8}></Col>
-      <Col sm={1}>
-        <Button color="primary" type="submit">
-          Save
-        </Button>
-      </Col>
-      <Col sm={1}>
-        <Button color="secondary" type="reset">
-          Cancel
-        </Button>
+      <Col>
+        <div className="d-flex flex-row align-items-center justify-content-end">
+          <Button color="primary" type="submit" className="mr-2">
+            Save
+          </Button>
+          <Button color="secondary" type="reset">
+            Cancel
+          </Button>
+        </div>
       </Col>
     </FormGroup>
   );

@@ -5,6 +5,7 @@ import { withPageConfig } from './../Layout';
 
 const SidebarTrigger = (props) => {
   const { tag: Tag, pageConfig, ...otherProps } = props;
+  
   return (
     <Tag
       onClick={ () => { props.pageConfig.toggleSidebar(); return false; } }

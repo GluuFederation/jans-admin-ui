@@ -24,7 +24,7 @@ function GluuNavBar({ themeColor, themeStyle, userinfo }) {
       color={themeColor}
       className="shadow-sm"
     >
-      <Navbar expand="lg" themed>
+      <Navbar fluid={true} expand="lg" themed>
         {/* END Navbar: Left Side */}
         <Nav>
           <NavItem className="mr-3">

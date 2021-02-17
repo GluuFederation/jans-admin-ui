@@ -38,9 +38,10 @@ import {
 import {
   TinyAreaChart
 } from "../../components/Analytics/TinyAreaChart";
-import {
+/* import {
   SimpleLineChart
-} from "./../../Graphs/ReCharts/components/SimpleLineChart";
+} from "./../../Graphs/ReCharts/components/SimpleLineChart"; */
+import {SimpleLineChart} from '../../components/Stock/SimpleLineChart'
 
 import classes from './Analytics.scss';
 

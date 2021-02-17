@@ -194,32 +194,35 @@ function ClientForm({ data }) {
         </Col>
       </FormGroup>
       <FormGroup row>
-        <GluuLabel label="Multivalued" size={3} />
-        <Col sm={1}>
+        <GluuLabel label="Multivalued" forID="oxMultiValuedAttribute" size={3} />
+        <Col sm={2}>
           <Input
             id="oxMultiValuedAttribute"
             name="oxMultiValuedAttribute"
+            className="m-0 position-relative"
             onChange={formik.handleChange}
             type="checkbox"
             defaultChecked
           />
         </Col>
-        <GluuLabel label="Include in SCIM extension" size={3} />
-        <Col sm={1}>
+        <GluuLabel label="Include in SCIM extension" forID="oxMultiValuedAttribute2" size={3} />
+        <Col sm={2}>
           <Input
-            id="oxMultiValuedAttribute"
-            name="oxMultiValuedAttribute"
+            id="oxMultiValuedAttribute2"
+            name="oxMultiValuedAttribute2"
             onChange={formik.handleChange}
+            className="m-0 position-relative"
             type="checkbox"
             defaultChecked
           />
         </Col>
-        <GluuLabel label="Multivalued" size={3} />
-        <Col sm={1}>
+        <GluuLabel label="Multivalued" forID="oxMultiValuedAttribute3" size={3} />
+        <Col sm={2}>
           <Input
-            id="oxMultiValuedAttribute"
+            id="oxMultiValuedAttribute3"
             onChange={formik.handleChange}
-            name="oxMultiValuedAttribute"
+            name="oxMultiValuedAttribute3"
+            className="m-0 position-relative"
             type="checkbox"
             defaultChecked
           />

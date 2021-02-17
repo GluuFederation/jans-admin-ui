@@ -1,7 +1,7 @@
 import React from "react";
 import { Label } from "./../../../components";
 
-function GluuLabel({ label, required, size }) {
+function GluuLabel({ label, required, size, forID = "" }) {
   function getSize() {
     if (size != null) {
       return size;
@@ -9,7 +9,7 @@ function GluuLabel({ label, required, size }) {
     return 3;
   }
   return (
-    <Label sm={getSize()}>
+    <Label sm={getSize()} for={forID}>
       <h5>
         {label}
         {required && <span style={{ color: "red", fontSize: "22px" }}> *</span>}

@@ -1,12 +1,15 @@
+import React from "react";
+const Icon = ({ iconName }) => <i className={`fa fa-fw ${iconName}`}></i>;
+
 const items = [
   {
     title: "PluginOne",
-    icon: "<i className='fa fa-fw fa-sitemap'></i>",
+    icon: <Icon iconName="fa-sitemap" />,
     items: []
   },
   {
     title: "PluginTwo",
-    icon: "<i className='fa fa-fw fa-sitemap'></i>",
+    icon: <Icon iconName="fa-sitemap" />,
     items: []
   }
 ];

@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router";
 
 // ----------- Pages Imports ---------------
-//import Analytics from "./Dashboards/Analytics";
+import Analytics from "./Dashboards/Analytics";
 import Reports from "./Dashboards/Reports";
 
 import NavbarOnly from "./Layouts/NavbarOnly";
@@ -47,7 +47,7 @@ export const RoutedContent = () => {
   return (
     <Switch>
       <Redirect from="/" to="/home/reports" exact />
-      {/*<Route path="/home/analytics" exact component={ Analytics } />*/}
+      <Route path="/home/analytics" exact component={ Analytics } />
       <Route path="/home/reports" exact component={Reports} />
 
       {/*    Layouts     */}

@@ -27,13 +27,13 @@ const LogoThemed = ({ checkBackground, className, ...otherProps }) => (
   <ThemeConsumer>
     {
       ({ style, color }) => (
-        <img style={{ width:'110px', height:'30px' }}
+        <img style={{ width:'110px' }}
           src={
             checkBackground ?
               getLogoUrlBackground(style, color) :
               getLogoUrl(style, color)
           }
-          className={ classNames('d-block', className) }
+          className={ classNames('d-block', 'mx-auto', className) }
           alt="Jans admin ui Logo"
           { ...otherProps }
         />

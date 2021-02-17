@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **displayName** | **String** |  | 
 **description** | **String** | User friendly descriptive detail of attribute. | 
 **dataType** | **String** | Data Type of attribute. | 
-**status** | **String** | Attrubute status | [optional] 
+**status** | **String** | Attrubute status | 
 **lifetime** | **String** |  | [optional] 
 **sourceAttribute** | **String** |  | [optional] 
 **salt** | **String** |  | [optional] 

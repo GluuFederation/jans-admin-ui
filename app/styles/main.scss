@@ -1,1 +1,32 @@
 @import '~@miltonbo/dashboard-style-airframe/scss/style';
+
+/* .navbar-themed.navbar-expand-lg .nav.nav-pills .nested-dropdown__submenu-item--open .dropdown-menu, 
+.navbar-themed.navbar-expand-lg .nav.nav-pills .dropdown-menu.show */
+
+.navbar-themed {
+    &.navbar-expand-lg {
+        .nav {
+            &.nav-pills {
+                /* .nested-dropdown__submenu-item--open {
+                    .dropdown-menu {
+
+                    }
+                } */
+                .dropdown-menu {
+                    &.show {
+                        background: #fff;
+                        border: 1px solid #DEE2E6;
+                        box-shadow: 0 1px 2px 0 rgba(31,45,61,.07);
+                        & > .dropdown-item {
+                            color: #8493A5;
+                            &:hover, &:focus {
+                                color: #2a3039;
+                                background-color: #F8F9FA;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

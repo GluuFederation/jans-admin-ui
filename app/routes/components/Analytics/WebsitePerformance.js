@@ -7,9 +7,10 @@ import {
   Col
 } from './../../../components';
 
-import {
+/* import {
   TinyAreaChart
-} from "./../../Graphs/ReCharts/components/TinyAreaChart";
+} from "./../../Graphs/ReCharts/components/TinyAreaChart"; */
+import {TinyAreaChart} from '../../components/Analytics/TinyAreaChart'
 
 const WebsitePerformance = (props) => (
   <React.Fragment>

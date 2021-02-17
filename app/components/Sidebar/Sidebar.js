@@ -8,7 +8,7 @@ import { SidebarContent } from './SidebarContent';
 const Sidebar = (props) => (
   <React.Fragment>
     { /* Enable OuterClick only in sidebar overlay mode */}
-    <OuterClick
+    {/* <OuterClick
       active={
         !props.pageConfig.sidebarCollapsed && (
           props.pageConfig.screenSize === 'xs' ||
@@ -17,9 +17,9 @@ const Sidebar = (props) => (
         )
       }
       onClickOutside={ () => props.pageConfig.toggleSidebar() }
-    >
+    > */}
       <SidebarContent { ...props } />
-    </OuterClick>
+    {/* </OuterClick> */}
   </React.Fragment>
 );
 
