@@ -9,7 +9,8 @@ import scopesSagas from "./OAuthScopeSaga";
 import attributeSaga from "./AttributeSaga";
 import openidClientSaga from "./OpenidClientSaga";
 import customScriptSaga from "./CustomScriptSaga";
+import pluginSagas from "../plugins/pluginSaga";
 
 export default function* rootSaga() {
-  yield all([authSagas(), scopesSagas(), openidClientSaga(), attributeSaga(), customScriptSaga()]);
+  yield all([authSagas(), scopesSagas(), openidClientSaga(), attributeSaga(), customScriptSaga(), pluginSagas()]);
 }

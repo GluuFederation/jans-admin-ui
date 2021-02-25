@@ -1,5 +1,19 @@
-import React from 'react'
+//import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { SidebarMenu, Divider } from './../../components'
+import { connect } from 'react-redux'
+
+import {
+	getAllPlugins,
+} from './../../redux/plugins/pluginAction'
+
+
+/*function getPlugin({ plugins, dispatch }) {
+	  useEffect(() => {
+	    dispatch(getAllPlugins())
+	  }, [])
+}*/
+
 
 export const SidebarMiddleNav = () => (
   <SidebarMenu>
@@ -41,6 +55,9 @@ export const SidebarMiddleNav = () => (
     </SidebarMenu.Item>
     {/* -------- Scopes ---------*/}
     {/* -------- Plugins ---------*/}
+    //{dispatch(getAllPlugins())}
+    
+    
     
     <Divider />
     <Divider />
@@ -71,3 +88,13 @@ export const SidebarMiddleNav = () => (
     />
   </SidebarMenu>
 )
+
+
+const mapStateToProps = (state) => {
+	  return {
+	    plugins: state.pluginReducer.items,
+	    loading: state.pluginReducer.loading,
+	    hasApiError: state.pluginReducer.hasApiError,
+	  }
+	}
+export default connect(mapStateToProps)(SidebarMiddleNav)
