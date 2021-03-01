@@ -5,13 +5,18 @@ import { connect } from 'react-redux'
 import { Badge } from 'reactstrap'
 import GluuDialog from '../Gluu/GluuDialog'
 import AttributeDetailPage from '../Attibutes/AttributeDetailPage'
+import {
+  hasPermission,
+  ATTRIBUTE_WRITE,
+  ATTRIBUTE_DELETE,
+} from '../../../utils/PermChecker'
 //import attributes from './attributes'
 import {
   getAttributes,
   setCurrentItem,
 } from '../../../redux/actions/AttributeActions'
 
-function AttributeListPage({ attributes, dispatch }) {
+function AttributeListPage({ attributes, scopes, dispatch }) {
   useEffect(() => {
     dispatch(getAttributes())
   }, [])
@@ -50,7 +55,6 @@ function AttributeListPage({ attributes, dispatch }) {
       <MaterialTable
         columns={[
           { title: 'Inum', field: 'inum' },
-          { title: 'Name', field: 'name' },
           { title: 'Display Name', field: 'displayName' },
           { title: 'Data Type', field: 'dataType' },
           {
@@ -76,7 +80,7 @@ function AttributeListPage({ attributes, dispatch }) {
             },
             tooltip: 'Edit Attribute',
             onClick: (event, rowData) => handleGoToAttributeEditPage(rowData),
-            disabled: false,
+            disabled: !hasPermission(scopes, ATTRIBUTE_WRITE),
           }),
           {
             icon: 'add',
@@ -84,6 +88,7 @@ function AttributeListPage({ attributes, dispatch }) {
             iconProps: { color: 'primary' },
             isFreeAction: true,
             onClick: () => handleGoToAttributeAddPage(),
+            disabled: !hasPermission(scopes, ATTRIBUTE_WRITE),
           },
           {
             icon: 'refresh',
@@ -102,7 +107,7 @@ function AttributeListPage({ attributes, dispatch }) {
             },
             tooltip: 'Delete Attribute',
             onClick: (event, rowData) => handleAttribueDelete(rowData),
-            disabled: false,
+            disabled: !hasPermission(scopes, ATTRIBUTE_DELETE),
           }),
         ]}
         options={{
@@ -110,7 +115,7 @@ function AttributeListPage({ attributes, dispatch }) {
           selection: false,
           pageSize: 10,
           headerStyle: {
-            backgroundColor: '#01579b',
+            backgroundColor: '#1EB7FF', //#1EB7FF 01579b
             color: '#FFF',
             padding: '2px',
             textTransform: 'uppercase',
@@ -138,6 +143,7 @@ const mapStateToProps = (state) => {
   return {
     attributes: state.attributeReducer.items,
     loading: state.attributeReducer.loading,
+    scopes: state.authReducer.permissions,
     hasApiError: state.attributeReducer.hasApiError,
   }
 }
