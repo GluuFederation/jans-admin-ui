@@ -1,7 +1,5 @@
-import React, { Component } from 'react'
-import ViewRedirect from './ViewRedirect'
+import React, {Component,  useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
-import { saveState, isValidState } from './TokenController'
 
 // -----Third party dependencies -----
 import queryString from 'query-string'
@@ -15,15 +13,16 @@ import {
 	getAllPlugins,
 } from '../redux/plugins/pluginAction'
 
-class PluginUtil extends Component {
+class PluginUtil extends Component {	  
   state = {
     pluginsAvailable: false,
+    pluginList: null
   }
+  
 
   // Methods
 
-  static buildPluginUrl = () => {
-   
+  static buildPluginUrl = () => {   
     // const url = `${pluginBaseUrl}`
     const url = `http://localhost:8080/plugins/list`
     return url
@@ -34,37 +33,38 @@ class PluginUtil extends Component {
     super()
   }
 
-  static getDerivedStateFromProps(props) {
-    console.log('getDerivedStateFromProps() =============================props = '+props)
-    if (!props.pluginsAvailable) {
-    	 const pluginUrl = PluginUtil.buildPluginUrl()
-    	 console.log('Url to fetch plugins pluginUrl: ', pluginUrl)
-         window.location.href = pluginUrl
+  static getPlugins(props) {
+	  console.log(" pluginUtil.js  ---- 1 --- ")
+     console.log('getPlugins() =============================props = '+props)
+
+       const pluginsAvailable = false
+    	const pluginList = props.getAllPlugins();
+	    console.log(' PluginUtil - 1  pluginsAvailable = '+pluginsAvailable+' ,pluginList = '+pluginList)
+    	if( pluginList != undefined && pluginList != null && pluginList.size>0){
+    		pluginsAvailable = true
+    	}
+    	
+    	console.log(' PluginUtil - 2  pluginsAvailable = '+pluginsAvailable+' ,pluginList = '+pluginList)
          return null
-    } else {
-      return { pluginsAvailable: true}
-    }
+    
   }
   render() {
     const { pluginsAvailable, pluginList} = this.state
+    console.log(" pluginUtil.js => pluginList = "+pluginList)
     return (
-      <React.Fragment>
-        {pluginsAvailable && this.props.children}
-        {!pluginsAvailable && <ViewRedirect config={this.props.config} />}
-      </React.Fragment>
+    		pluginList
     )
   }
 }
 
 // Redux
-
-const mapStateToProps = ({ pluginReducer }) => {
-	const pluginList = pluginReducer.items
-	
-  return {
-		pluginList,
-  }
-}
+const mapStateToProps = (state) => {
+	  return {
+	    pluginsL: state.pluginReducer.items,
+	    loading: state.pluginReducer.loading,
+	    hasApiError: state.pluginReducer.hasApiError,
+	  }
+	}
 
 export default withRouter(
   connect(mapStateToProps, {

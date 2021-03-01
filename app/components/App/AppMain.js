@@ -23,6 +23,7 @@ const AppMain = () => {
           <PluginUtil>
             <AppLayout>
               <RoutedContent />
+              console.log(" AppMain pluginList = "+pluginList)
             </AppLayout>
           </PluginUtil>
         </Router>

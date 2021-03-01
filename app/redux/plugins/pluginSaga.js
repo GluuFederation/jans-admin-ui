@@ -19,6 +19,8 @@ import {
 function* getPluginWorker() {
   try {
     const response = yield call(fetchPluginList)
+    console.log('pluginSaga.js response = '+response)
+    
     if (response) {
       yield put(getAllPluginResponse(response))
       return
