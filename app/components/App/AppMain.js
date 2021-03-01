@@ -21,9 +21,9 @@ const AppMain = () => {
             </AppLayout>
           </SessionChecker>
           <PluginUtil>
-          <AppLayout>
-          <RoutedContent />
-        </AppLayout>
+            <AppLayout>
+              <RoutedContent />
+            </AppLayout>
           </PluginUtil>
         </Router>
       </PersistGate>
