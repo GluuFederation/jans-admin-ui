@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import AppLayout from '../../layout/default'
 import { RoutedContent } from '../../routes'
+import PluginUtil from '../../utils/PluginUtil'
 import SessionChecker from '../../utils/SessionChecker'
 import { Provider } from 'react-redux'
 import { configureStore } from '../../redux/store'
@@ -19,6 +20,11 @@ const AppMain = () => {
               <RoutedContent />
             </AppLayout>
           </SessionChecker>
+          <PluginUtil>
+          <AppLayout>
+          <RoutedContent />
+        </AppLayout>
+          </PluginUtil>
         </Router>
       </PersistGate>
     </Provider>
