@@ -13,4 +13,3 @@ export const fetchPluginList = async () => {
       return -1
     })
 }
-

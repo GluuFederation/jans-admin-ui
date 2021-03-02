@@ -1,5 +1,8 @@
-import React, {Component,  useState, useEffect } from 'react'
+import React, { Component } from 'react'
+import ViewRedirect from './ViewRedirect'
 import { withRouter } from 'react-router'
+//import React, {Component,  useState, useEffect } from 'react'
+
 
 // -----Third party dependencies -----
 import queryString from 'query-string'
@@ -15,13 +18,11 @@ import {
 
 class PluginUtil extends Component {	  
   state = {
-    pluginsAvailable: false,
-    pluginList: null
-  }
+    pluginsAvailable: false
+    }
   
 
-  // Methods
-
+  // Methodss
   static buildPluginUrl = () => {   
     // const url = `${pluginBaseUrl}`
     const url = `http://localhost:8080/plugins/list`
@@ -33,36 +34,40 @@ class PluginUtil extends Component {
     super()
   }
 
-  static getPlugins(props) {
+  static getDerivedStateFromProps(props) {
 	  console.log(" pluginUtil.js  ---- 1 --- ")
-     console.log('getPlugins() =============================props = '+props)
+	 props.getAllPlugins();
+    
 
-       const pluginsAvailable = false
-    	const pluginList = props.getAllPlugins();
+     /*  
+       console.log('getPlugins() =============================pluginList = '+pluginList)
+     pluginsAvailable:  false
+    	
 	    console.log(' PluginUtil - 1  pluginsAvailable = '+pluginsAvailable+' ,pluginList = '+pluginList)
     	if( pluginList != undefined && pluginList != null && pluginList.size>0){
     		pluginsAvailable = true
-    	}
-    	
+    	}    	
     	console.log(' PluginUtil - 2  pluginsAvailable = '+pluginsAvailable+' ,pluginList = '+pluginList)
+    	*/
+	  pluginsAvailable: true
          return null
     
   }
   render() {
-    const { pluginsAvailable, pluginList} = this.state
-    console.log(" pluginUtil.js => pluginList = "+pluginList)
-    return (
-    		pluginList
-    )
-  }
-}
-
+	    const { pluginsAvailable } = this.state
+	    return (
+	      <React.Fragment>
+	        {pluginsAvailable && this.props.pluginList}
+	        {!pluginsAvailable && <ViewRedirect plugins={this.props.pluginList} />}
+	      </React.Fragment>
+	    )
+	  }
+	}
 // Redux
-const mapStateToProps = (state) => {
+const mapStateToProps = (pluginReducer) => {
+	  const pluginList = pluginReducer.plugin
 	  return {
-	    pluginsL: state.pluginReducer.items,
-	    loading: state.pluginReducer.loading,
-	    hasApiError: state.pluginReducer.hasApiError,
+		  pluginList
 	  }
 	}
 

@@ -12,7 +12,7 @@ import {
  * initial plugin state
  */
 const INIT_STATE = {
-		items: []
+		plugin: []
 }
 
 export default (state = INIT_STATE, action) => {
