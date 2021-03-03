@@ -40,3 +40,28 @@ export const deleteScope = async inum => {
     });
   });
 };
+
+export const addNewScope = (data) => {
+	  return new Promise((resolve, reject) => {
+	    api.postOauthScopes(data, (error, data) => {
+	      if (error) {
+	        reject(error)
+	      } else {
+	        resolve(data)
+	      }
+	    })
+	  })
+	};
+
+	export const editAScope = (data) => {
+	  return new Promise((resolve, reject) => {
+	    api.putOauthScopes(data, (error, data) => {
+	      if (error) {
+	        reject(error)
+	      } else {
+	        resolve(data)
+	      }
+	    })
+	  })
+	};
+

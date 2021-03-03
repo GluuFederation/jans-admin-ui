@@ -637,6 +637,21 @@ class AppConfiguration {
             if (data.hasOwnProperty('externalLoggerConfiguration')) {
                 obj['externalLoggerConfiguration'] = ApiClient.convertToType(data['externalLoggerConfiguration'], 'String');
             }
+            if (data.hasOwnProperty('dcrSignatureValidationEnabled')) {
+                obj['dcrSignatureValidationEnabled'] = ApiClient.convertToType(data['dcrSignatureValidationEnabled'], 'Boolean');
+            }
+            if (data.hasOwnProperty('dcrSignatureValidationSoftwareStatementJwksURIClaim')) {
+                obj['dcrSignatureValidationSoftwareStatementJwksURIClaim'] = ApiClient.convertToType(data['dcrSignatureValidationSoftwareStatementJwksURIClaim'], 'String');
+            }
+            if (data.hasOwnProperty('dcrSignatureValidationSoftwareStatementJwksClaim')) {
+                obj['dcrSignatureValidationSoftwareStatementJwksClaim'] = ApiClient.convertToType(data['dcrSignatureValidationSoftwareStatementJwksClaim'], 'String');
+            }
+            if (data.hasOwnProperty('dcrSignatureValidationJwks')) {
+                obj['dcrSignatureValidationJwks'] = ApiClient.convertToType(data['dcrSignatureValidationJwks'], 'String');
+            }
+            if (data.hasOwnProperty('dcrSignatureValidationJwksUri')) {
+                obj['dcrSignatureValidationJwksUri'] = ApiClient.convertToType(data['dcrSignatureValidationJwksUri'], 'String');
+            }
         }
         return obj;
     }
@@ -1811,6 +1826,36 @@ AppConfiguration.prototype['httpLoggingExludePaths'] = undefined;
  * @member {String} externalLoggerConfiguration
  */
 AppConfiguration.prototype['externalLoggerConfiguration'] = undefined;
+
+/**
+ * Boolean value enables DCR signature validation. Default is false.
+ * @member {Boolean} dcrSignatureValidationEnabled
+ */
+AppConfiguration.prototype['dcrSignatureValidationEnabled'] = undefined;
+
+/**
+ * Specifies claim name inside software statement. Value of claim should point to JWKS URI.
+ * @member {String} dcrSignatureValidationSoftwareStatementJwksURIClaim
+ */
+AppConfiguration.prototype['dcrSignatureValidationSoftwareStatementJwksURIClaim'] = undefined;
+
+/**
+ * Specifies claim name inside software statement. Value of claim should point to inlined JWKS.
+ * @member {String} dcrSignatureValidationSoftwareStatementJwksClaim
+ */
+AppConfiguration.prototype['dcrSignatureValidationSoftwareStatementJwksClaim'] = undefined;
+
+/**
+ * Specifies JWKS for all DCR's validations.
+ * @member {String} dcrSignatureValidationJwks
+ */
+AppConfiguration.prototype['dcrSignatureValidationJwks'] = undefined;
+
+/**
+ * specifies JWKS URI for all DCR's validations.
+ * @member {String} dcrSignatureValidationJwksUri
+ */
+AppConfiguration.prototype['dcrSignatureValidationJwksUri'] = undefined;
 
 
 

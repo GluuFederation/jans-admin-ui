@@ -3,6 +3,10 @@ import {
   GET_SCOPE_BY_INUM_RESPONSE,
   GET_SCOPES,
   GET_SCOPES_RESPONSE,
+  ADD_SCOPE,
+  ADD_SCOPE_RESPONSE,
+  EDIT_SCOPE,
+  EDIT_SCOPE_RESPONSE,
   RESET,
   SET_API_ERROR
 } from "../actions/types";
@@ -41,6 +45,34 @@ export default (state = INIT_STATE, action) => {
         loading: false,
         hasApiError: false
       };
+      
+    case ADD_SCOPE:
+        return {
+          ...state,
+          loading: true
+        };
+      case ADD_SCOPE_RESPONSE:
+        return {
+          ...state,
+          items: [...state.items, action.payload.data],
+          loading: false,
+          hasApiError: false
+        };
+        
+      case EDIT_SCOPE:
+          return {
+            ...state,
+            loading: true
+          };
+        case EDIT_SCOPE_RESPONSE:
+          return {
+            ...state,
+            items: [...state.items, action.payload.data],
+            loading: false,
+            hasApiError: false
+          };
+
+        
     case SET_API_ERROR:
       return { ...state, loading: false, hasApiError: true };
     case RESET:

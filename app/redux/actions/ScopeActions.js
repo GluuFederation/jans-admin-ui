@@ -1,6 +1,10 @@
 import {
   GET_SCOPES,
   GET_SCOPES_RESPONSE,
+  ADD_SCOPE,
+  ADD_SCOPE_RESPONSE,
+  EDIT_SCOPE,
+  EDIT_SCOPE_RESPONSE,
   DELETE_SCOPE,
   DELETE_SCOPE_RESPONSE,
   GET_SCOPE_BY_INUM,
@@ -20,6 +24,26 @@ export const getScope = inum => ({
 
 export const getScopes = () => ({
   type: GET_SCOPES
+});
+
+export const addScope = data => ({
+	type: ADD_SCOPE,
+	payload: {data}
+});
+
+export const addScopeResponse = data => ({
+	type: ADD_SCOPE_RESPONSE,
+	payload: {data}
+}) ;
+
+export const editScope = data => ({
+	type: EDIT_SCOPE,
+	payload: {data}
+}) ;
+
+export const editScopeResponse = data => ({
+	type: EDIT_SCOPE_RESPONSE,
+	payload: {data}
 });
 
 export const getScopesResponse = data => ({

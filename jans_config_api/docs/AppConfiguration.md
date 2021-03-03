@@ -199,6 +199,11 @@ Name | Type | Description | Notes
 **httpLoggingEnabled** | **Boolean** | Enable/Disable request/response logging filter. | [optional] 
 **httpLoggingExludePaths** | **[String]** | List of base URI for which request/response logging filter should not record activity. | [optional] 
 **externalLoggerConfiguration** | **String** | Path to external log4j2 logging configuration. | [optional] 
+**dcrSignatureValidationEnabled** | **Boolean** | Boolean value enables DCR signature validation. Default is false. | [optional] 
+**dcrSignatureValidationSoftwareStatementJwksURIClaim** | **String** | Specifies claim name inside software statement. Value of claim should point to JWKS URI. | [optional] 
+**dcrSignatureValidationSoftwareStatementJwksClaim** | **String** | Specifies claim name inside software statement. Value of claim should point to inlined JWKS. | [optional] 
+**dcrSignatureValidationJwks** | **String** | Specifies JWKS for all DCR&#39;s validations. | [optional] 
+**dcrSignatureValidationJwksUri** | **String** | specifies JWKS URI for all DCR&#39;s validations. | [optional] 
 
 
 

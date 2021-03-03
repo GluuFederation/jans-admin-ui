@@ -9,13 +9,25 @@ import {
   takeEvery,
   takeLatest
 } from "redux-saga/effects";
-import { getScope, getAllScopes } from "../api/scope-api";
+import { 
+	getScope,
+	getAllScopes,
+	addNewScope,
+	editAScope
+	} from "../api/scope-api";
 import {
   deleteScopeResponse,
   getScopesResponse,
+  addScopeResponse,
+  editScopeResponse,
   setApiError
 } from "../actions/ScopeActions";
-import { GET_SCOPES, GET_SCOPE_BY_INUM } from "../actions/types";
+import { 
+	GET_SCOPES, 
+	GET_SCOPE_BY_INUM,
+	ADD_SCOPE,
+	EDIT_SCOPE
+	} from "../actions/types";
 
 export function* getScopeByInum() {
   try {
@@ -35,13 +47,42 @@ export function* getScopes() {
   }
 }
 
+export function* addAScope() {
+	  try {
+	    const data = yield call(addNewScope);
+	    yield put(addScopeResponse(data));
+	  } catch (e) {
+	    yield put(setApiError(e));
+	  }
+	}
+
+export function* editScope() {
+	  try {
+	    const data = yield call(editAScope);
+	    yield put(editScopeResponse(data));
+	  } catch (e) {
+	    yield put(setApiError(e));
+	  }
+	}
+
 export function* watchGetScopeByInum() {
   yield takeEvery(GET_SCOPE_BY_INUM, getScopeByInum);
 }
 export function* watchGetScopes() {
   yield takeLatest(GET_SCOPES, getScopes);
 }
+export function* watchAddAScope() {
+	yield takeLatest(ADD_SCOPE, addAScope);
+}
+export function* watchEditAScope() {
+	yield takeLatest(EDIT_SCOPE, editScope);
+}
 
 export default function* rootSaga() {
-  yield all([fork(watchGetScopeByInum), fork(watchGetScopes)]);
+  yield all([
+	  fork(watchGetScopeByInum), 
+	  fork(watchGetScopes),
+	  fork(watchAddAScope),
+	  fork(watchEditAScope)
+	  ]);
 }
