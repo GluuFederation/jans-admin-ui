@@ -257,7 +257,7 @@ class AppConfiguration {
                 obj['cleanServiceBatchChunkSize'] = ApiClient.convertToType(data['cleanServiceBatchChunkSize'], 'Number');
             }
             if (data.hasOwnProperty('cleanServiceBaseDns')) {
-                obj['cleanServiceBaseDns'] = ApiClient.convertToType(data['cleanServiceBaseDns'], ['String']);
+                obj['cleanServiceBaseDns'] = ApiClient.convertToType(data['cleanServiceBaseDns'], {'String': 'String'});
             }
             if (data.hasOwnProperty('keyRegenerationEnabled')) {
                 obj['keyRegenerationEnabled'] = ApiClient.convertToType(data['keyRegenerationEnabled'], 'Boolean');
@@ -651,6 +651,15 @@ class AppConfiguration {
             }
             if (data.hasOwnProperty('dcrSignatureValidationJwksUri')) {
                 obj['dcrSignatureValidationJwksUri'] = ApiClient.convertToType(data['dcrSignatureValidationJwksUri'], 'String');
+            }
+            if (data.hasOwnProperty('statEnabled')) {
+                obj['statEnabled'] = ApiClient.convertToType(data['statEnabled'], 'Boolean');
+            }
+            if (data.hasOwnProperty('statTimerIntervalInSeconds')) {
+                obj['statTimerIntervalInSeconds'] = ApiClient.convertToType(data['statTimerIntervalInSeconds'], 'Number');
+            }
+            if (data.hasOwnProperty('statWebServiceIntervalLimitInSeconds')) {
+                obj['statWebServiceIntervalLimitInSeconds'] = ApiClient.convertToType(data['statWebServiceIntervalLimitInSeconds'], 'Number');
             }
         }
         return obj;
@@ -1068,8 +1077,8 @@ AppConfiguration.prototype['cleanServiceInterval'] = undefined;
 AppConfiguration.prototype['cleanServiceBatchChunkSize'] = undefined;
 
 /**
- * List of additional base dns under which AS will look up for expired entities.
- * @member {Array.<String>} cleanServiceBaseDns
+ * Map of additional base dns under which AS will look up for expired entities.
+ * @member {Object.<String, String>} cleanServiceBaseDns
  */
 AppConfiguration.prototype['cleanServiceBaseDns'] = undefined;
 
@@ -1856,6 +1865,24 @@ AppConfiguration.prototype['dcrSignatureValidationJwks'] = undefined;
  * @member {String} dcrSignatureValidationJwksUri
  */
 AppConfiguration.prototype['dcrSignatureValidationJwksUri'] = undefined;
+
+/**
+ * Boolean value indicating if statistical service is enabled.
+ * @member {Boolean} statEnabled
+ */
+AppConfiguration.prototype['statEnabled'] = undefined;
+
+/**
+ * Statistical data capture time interval.
+ * @member {Number} statTimerIntervalInSeconds
+ */
+AppConfiguration.prototype['statTimerIntervalInSeconds'] = undefined;
+
+/**
+ * Statistical data capture time interval limit.
+ * @member {Number} statWebServiceIntervalLimitInSeconds
+ */
+AppConfiguration.prototype['statWebServiceIntervalLimitInSeconds'] = undefined;
 
 
 

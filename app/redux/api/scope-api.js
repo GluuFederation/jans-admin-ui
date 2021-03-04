@@ -41,9 +41,10 @@ export const deleteScope = async inum => {
   });
 };
 
-export const addNewScope = (data) => {
+export const addNewScope = (input) => {
+	console.log('Scope Api - input - '+input)
 	  return new Promise((resolve, reject) => {
-	    api.postOauthScopes(data, (error, data) => {
+	    api.postOauthScopes(input, (error, data) => {
 	      if (error) {
 	        reject(error)
 	      } else {

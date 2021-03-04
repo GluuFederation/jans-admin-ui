@@ -28,7 +28,8 @@ import {
 	ADD_SCOPE,
 	EDIT_SCOPE
 	} from "../actions/types";
-
+	import { isFourZeroOneError, hasApiToken } from '../../utils/TokenController'
+	
 export function* getScopeByInum() {
   try {
     const data = yield call(getScope);
@@ -47,24 +48,30 @@ export function* getScopes() {
   }
 }
 
-export function* addAScope() {
+export function* addAScope({ payload }) {
 	  try {
-	    const data = yield call(addNewScope);
-	    yield put(addScopeResponse(data));
+		  console.log('Scope Saga - payload.data ='+payload.data)
+	    const data = yield call(addNewScope, payload.data)
+		  console.log('Scope Saga - data ='+data)
+	    yield put(addScopeResponse(data))
 	  } catch (e) {
-	    yield put(setApiError(e));
+	    if (isFourZeroOneError(e) && !hasApiToken()) {
+	      yield put(getAPIAccessToken())
+	    }
 	  }
 	}
 
-export function* editScope() {
+	export function* editScope({ payload }) {
 	  try {
-	    const data = yield call(editAScope);
-	    yield put(editScopeResponse(data));
+	    const data = yield call(editAScope, payload.data)
+	    yield put(editScopeResponse(data))
 	  } catch (e) {
-	    yield put(setApiError(e));
+	    if (isFourZeroOneError(e) && !hasApiToken()) {
+	      yield put(getAPIAccessToken())
+	    }
 	  }
 	}
-
+	
 export function* watchGetScopeByInum() {
   yield takeEvery(GET_SCOPE_BY_INUM, getScopeByInum);
 }

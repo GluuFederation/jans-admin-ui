@@ -1,18 +1,35 @@
-import React from 'react'
-import ScopeForm from './ScopeForm'
-import { Container, CardBody, Card } from './../../../components'
-function ScopeAddPage() {
+import React from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { Container, CardBody, Card } from "./../../../components";
+import ScopeForm from "./ScopeForm";
+import { addScope,editScope } from "../../../redux/actions/ScopeActions";
+
+function ScopeAddPage({ dispatch }) {
+  const history = useHistory();
+  function handleSubmit(data) {
+    if (data) {
+      dispatch(addScope(data));
+      history.push("/scripts");
+    }
+  }
   return (
     <React.Fragment>
       <Container>
         <Card className="mb-3">
           <CardBody>
-            <ScopeForm></ScopeForm>
+            <ScopeForm item={new Object()} handleSubmit={handleSubmit} />
           </CardBody>
         </Card>
       </Container>
     </React.Fragment>
-  )
+  );
 }
+const mapStateToProps = state => {
+  return {
+    loading: state.customScriptReducer.loading,
+    hasApiError: state.customScriptReducer.hasApiError
+  };
+};
+export default connect(mapStateToProps)(ScopeAddPage);
 
-export default ScopeAddPage
