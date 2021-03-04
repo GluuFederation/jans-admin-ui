@@ -10,6 +10,8 @@ import attributeSaga from './AttributeSaga'
 import openidClientSaga from './OpenidClientSaga'
 import customScriptSaga from './CustomScriptSaga'
 import smtpSaga from './SmtpSaga'
+import fidoSaga from './FidoSaga'
+import loggingSaga from './LoggingSaga'
 
 export default function* rootSaga() {
   yield all([
@@ -19,5 +21,7 @@ export default function* rootSaga() {
     attributeSaga(),
     customScriptSaga(),
     smtpSaga(),
+    fidoSaga(),
+    loggingSaga(),
   ])
 }
