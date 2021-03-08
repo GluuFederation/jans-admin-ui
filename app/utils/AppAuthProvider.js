@@ -17,7 +17,7 @@ import {
   getAPIAccessToken,
 } from '../redux/actions'
 
-class SessionChecker extends Component {
+class AppAuthProvider extends Component {
   state = {
     showContent: false,
   }
@@ -73,7 +73,7 @@ class SessionChecker extends Component {
           if (showContent && props.config != -1) {
             const state = uuidv4()
             saveState(state)
-            const authzUrl = SessionChecker.buildAuthzUrl(
+            const authzUrl = AppAuthProvider.buildAuthzUrl(
               props.config,
               state,
               uuidv4(),
@@ -135,5 +135,5 @@ export default withRouter(
     getOAuth2Config,
     getUserInfo,
     getAPIAccessToken,
-  })(SessionChecker),
+  })(AppAuthProvider),
 )
