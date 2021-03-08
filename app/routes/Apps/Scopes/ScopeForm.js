@@ -131,6 +131,27 @@ function ScopeForm({ item, handleSubmit }) {
 	    	        </Col>
 	    	      </FormGroup>
 	    	      
+	    	      <FormGroup row>
+	    	        <GluuLabel label="Authorization Policy"  />
+	    	        <Col sm={9}>
+	    	          <InputGroup>
+	    	            <CustomInput 
+	    	              type="select"
+	    	             multiple="true"
+	    	              id="umaAuthorizationPolicies"
+	    	              name="scopeType"
+	    	              defaultValue={item.umaAuthorizationPolicies}
+	    	              onChange={formik.handleChange}
+	    	            >
+	    	              <option value="">Choose...</option>
+	    	              <option value="openid">OpenID</option>
+	    	              <option value="uma">UMA</option>
+	    	              <option value="oauth">OAuth</option>
+	    	            </CustomInput>
+	    	          </InputGroup>
+	    	        </Col>
+	    	      </FormGroup>
+	    	      
 	    	      
 	    	      <FormGroup row></FormGroup>
 	    	      <GluuFooter />

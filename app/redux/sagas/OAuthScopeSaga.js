@@ -41,16 +41,32 @@ export function* getScopeByInum() {
 }
 
 export function* getScopes() {
-  try {
-    const data = yield call(getAllScopes);
-    yield put(getScopesResponse(data));
-  } catch (e) {
-    yield put(setApiError(e));
-  }
-}
+	  try {
+	    const data = yield call(getAllScopes)
+	    yield put(getScopesResponse(data))
+	  } catch (e) {
+	    if (isFourZeroOneError(e) && !hasApiToken()) {
+	      yield put(getAPIAccessToken())
+	    }
+	    yield put(setApiError(e))
+	  }
+	}
 
 
 export function* addAScope({ payload }) {
+	  try {
+		  console.log('Scope Saga - payload.data ='+payload.data)
+	    const data = yield call(addNewScope, payload.data)
+		  console.log('Scope Saga - data ='+data)
+	    yield put(addScopeResponse(data))
+	  } catch (error) {
+	    yield put(setApiError(error))
+	  }
+	}
+
+
+
+/*export function* addAScope({ payload }) {
 	  try {
 		  console.log('Scope Saga - payload.data ='+payload.data)
 	    const data = yield call(addNewScope, payload.data)
@@ -62,7 +78,7 @@ export function* addAScope({ payload }) {
 	    }
 	    yield put(setApiError(e));
 	  }
-	}
+	}*/
 
 	export function* editScope({ payload }) {
 	  try {

@@ -8,31 +8,31 @@ import {
   EDIT_SCOPE,
   EDIT_SCOPE_RESPONSE,
   RESET,
+  SET_ITEM,
   SET_API_ERROR
 } from "../actions/types";
 
 const INIT_STATE = {
   items: [],
-  loading: true,
+  loading: false,
   hasApiError: false
 };
 
 export default (state = INIT_STATE, action) => {
-  switch (action.type) {
+	
+	switch (action.type) {	
     case GET_SCOPE_BY_INUM:
       return {
         ...state,
         loading: true
       };
-
     case GET_SCOPE_BY_INUM_RESPONSE:
       return {
         ...state,
-        currentScope: action.payload.data,
+        items: action.payload.data,
         loading: false,
         hasApiError: false
       };
-
     case GET_SCOPES:
       return {
         ...state,
@@ -44,8 +44,7 @@ export default (state = INIT_STATE, action) => {
         items: action.payload.data,
         loading: false,
         hasApiError: false
-      };
-      
+      };      
     case ADD_SCOPE:
         return {
           ...state,
@@ -57,8 +56,7 @@ export default (state = INIT_STATE, action) => {
           items: [...state.items, action.payload.data],
           loading: false,
           hasApiError: false
-        };
-        
+        };        
       case EDIT_SCOPE:
           return {
             ...state,
@@ -71,20 +69,23 @@ export default (state = INIT_STATE, action) => {
             loading: false,
             hasApiError: false
           };
-
-        
-    case SET_API_ERROR:
-      return { ...state, loading: false, hasApiError: true };
-    case RESET:
-      return {
-        ...state,
-        items: INIT_STATE.items,
-        loading: INIT_STATE.loading,
-        hasApiError: INIT_STATE.hasApiError
-      };
-    default:
-      return {
-        ...state
-      };
-  }
-};
+        case SET_ITEM:
+            return {
+              ...state,
+              item: action.payload.item,
+              loading: false
+            };case SET_API_ERROR:
+                return { ...state, loading: false, hasApiError: true };
+            case RESET:
+              return {
+                ...state,
+                items: INIT_STATE.items,
+                loading: INIT_STATE.loading,
+                hasApiError: INIT_STATE.hasApiError
+              };
+            default:
+              return {
+                ...state
+              };
+          }
+        };

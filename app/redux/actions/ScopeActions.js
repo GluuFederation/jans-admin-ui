@@ -27,14 +27,15 @@ export const getScopes = () => ({
 });
 
 export const addScope = data => ({
-	type: ADD_SCOPE,
-	payload: {data}
-});
+	  type: ADD_SCOPE,
+	  payload: { data }
+	});
 
 export const addScopeResponse = data => ({
-	type: ADD_SCOPE_RESPONSE,
-	payload: {data}
-}) ;
+	  type: ADD_SCOPE_RESPONSE,
+	  payload: { data }
+	});
+
 
 export const editScope = data => ({
 	type: EDIT_SCOPE,
