@@ -28,7 +28,8 @@ import {
 	ADD_SCOPE,
 	EDIT_SCOPE
 	} from "../actions/types";
-	import { isFourZeroOneError, hasApiToken } from '../../utils/TokenController'
+import { getAPIAccessToken } from '../actions/AuthActions'
+import { isFourZeroOneError, hasApiToken } from '../../utils/TokenController'
 	
 export function* getScopeByInum() {
   try {
@@ -48,6 +49,7 @@ export function* getScopes() {
   }
 }
 
+
 export function* addAScope({ payload }) {
 	  try {
 		  console.log('Scope Saga - payload.data ='+payload.data)
@@ -58,6 +60,7 @@ export function* addAScope({ payload }) {
 	    if (isFourZeroOneError(e) && !hasApiToken()) {
 	      yield put(getAPIAccessToken())
 	    }
+	    yield put(setApiError(e));
 	  }
 	}
 

@@ -10,7 +10,7 @@ function ScopeAddPage({ dispatch }) {
   function handleSubmit(data) {
     if (data) {
       dispatch(addScope(data));
-      history.push("/scripts");
+      history.push("/scopes");
     }
   }
   return (
@@ -27,8 +27,8 @@ function ScopeAddPage({ dispatch }) {
 }
 const mapStateToProps = state => {
   return {
-    loading: state.customScriptReducer.loading,
-    hasApiError: state.customScriptReducer.hasApiError
+    loading: state.scopeReducer.loading,
+    hasApiError: state.scopeReducer.hasApiError
   };
 };
 export default connect(mapStateToProps)(ScopeAddPage);
