@@ -87,7 +87,7 @@ function ScopeForm({ item, handleSubmit }) {
 	    	          <Input
 	    	            placeholder="Enter the displayName"
 	    	            id="displayName"
-	    	            valid={!formik.errors.displayName && !formik.touched.displayName && init}
+	    	           /* valid={!formik.errors.displayName && !formik.touched.displayName && init}*/
 	    	            name="displayName"
 	    	            defaultValue={item.displayName}
 	    	            onKeyUp={toogle}
@@ -102,7 +102,7 @@ function ScopeForm({ item, handleSubmit }) {
 	    	          <Input
 	    	            placeholder="Enter the IconUrl"
 	    	            id="iconUrl"
-	    	            valid={!formik.errors.iconUrl && !formik.touched.iconUrl && init}
+	    	            /*valid={!formik.errors.iconUrl && !formik.touched.iconUrl && init}*/
 	    	            name="iconUrl"
 	    	            defaultValue={item.iconUrl}
 	    	            onKeyUp={toogle}
@@ -137,8 +137,7 @@ function ScopeForm({ item, handleSubmit }) {
 	    	          <InputGroup>
 	    	            <CustomInput 
 	    	              type="select"
-	    	             multiple="true"
-	    	              id="umaAuthorizationPolicies"
+         	              id="umaAuthorizationPolicies"
 	    	              name="scopeType"
 	    	              defaultValue={item.umaAuthorizationPolicies}
 	    	              onChange={formik.handleChange}

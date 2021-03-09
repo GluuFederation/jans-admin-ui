@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Container, CardBody, Card } from "./../../../components";
 import ScopeForm from "./ScopeForm";
-import { addScope,editScope } from "../../../redux/actions/ScopeActions";
+import { addScope } from "../../../redux/actions/ScopeActions";
 
 function ScopeAddPage({ dispatch }) {
   const history = useHistory();
   function handleSubmit(data) {
     if (data) {
-      dispatch(addScope(data));
+      dispatch(addScope({'scope': data}));
       history.push("/scopes");
     }
   }
