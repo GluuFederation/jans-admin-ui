@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Container, CardBody, Card } from "./../../../components";
 import ScopeForm from "./ScopeForm";
 import { addScope } from "../../../redux/actions/ScopeActions";
 
+
 function ScopeAddPage({ dispatch }) {
+	
   const history = useHistory();
   function handleSubmit(data) {
     if (data) {
@@ -13,12 +15,14 @@ function ScopeAddPage({ dispatch }) {
       history.push("/scopes");
     }
   }
+  
   return (
     <React.Fragment>
       <Container>
         <Card className="mb-3">
           <CardBody>
-            <ScopeForm item={new Object()} handleSubmit={handleSubmit} />
+            <ScopeForm item={new Object()} handleSubmit={handleSubmit}
+            />
           </CardBody>
         </Card>
       </Container>
@@ -27,7 +31,7 @@ function ScopeAddPage({ dispatch }) {
 }
 const mapStateToProps = state => {
   return {
-    loading: state.scopeReducer.loading,
+	loading: state.scopeReducer.loading,
     hasApiError: state.scopeReducer.hasApiError
   };
 };

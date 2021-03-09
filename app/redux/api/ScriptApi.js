@@ -55,6 +55,7 @@ export default class ScriptApi {
 
   //Get script by type
   getCustomScriptByType = async (type) => {
+	  console.log(' ScriptApi getCustomScriptByType - '+type);
     return new Promise((resolve, reject) => {
       this.api.getConfigScriptsByType(type, (error, data) => {
         if (error) {

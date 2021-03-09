@@ -34,7 +34,19 @@ export default (state = INIT_STATE, action) => {
         items: action.payload.data,
         loading: false,
         hasApiError: false
-      };      
+      };    
+    case GET_CUSTOM_SCRIPT_BY_TYPE:
+        return {
+          ...state,
+          loading: true
+        };
+      case GET_CUSTOM_SCRIPT_BY_TYPE_RESPONSE:
+        return {
+          ...state,
+          items: action.payload.data,
+          loading: false,
+          hasApiError: false
+        };    
     case ADD_CUSTOM_SCRIPT:
       return {
         ...state,

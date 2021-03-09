@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -12,10 +14,16 @@ import {
 } from "./../../../components";
 import GluuFooter from "../Gluu/GluuFooter";
 import GluuLabel from "../Gluu/GluuLabel";
+import { getCustomScriptByType } from "../../../redux/actions/CustomScriptActions";
 
 
-function ScopeForm({ item, handleSubmit }) {
-
+function ScopeForm({ item, handleSubmit,dispatch}) {
+	 useEffect(() => {		      
+		 const opts = {}
+		 opts["pattern"] = "UMA_RPT_POLICY";
+			 dispatch(getCustomScriptByType(opts))		    
+			  }, [])
+		 
 	const [init, setInit] = useState(false);
 	
 	  function toogle() {
@@ -97,6 +105,23 @@ function ScopeForm({ item, handleSubmit }) {
 	    	      </FormGroup>
 	    	      
 	    	      <FormGroup row>
+	    	        <GluuLabel label="description"  />
+	    	        <Col sm={9}>
+	    	          <Input
+	    	            type="textarea"
+	    	            placeholder="Enter the description"
+	    	            maxLength="4000"
+	    	            id="description"
+	    	           /* valid={!formik.errors.displayName && !formik.touched.displayName && init}*/
+	    	            name="description"
+	    	            defaultValue={item.description}
+	    	            onKeyUp={toogle}
+	    	            onChange={formik.handleChange}
+	    	          />
+	    	        </Col>
+	    	      </FormGroup>
+	    	      
+	    	      <FormGroup row>
 	    	        <GluuLabel label="IconUrl"  />
 	    	        <Col sm={9}>
 	    	          <Input
@@ -124,8 +149,10 @@ function ScopeForm({ item, handleSubmit }) {
 	    	            >
 	    	              <option value="">Choose...</option>
 	    	              <option value="openid">OpenID</option>
-	    	              <option value="uma">UMA</option>
+	    	              <option value="dynamic">Dynamic</option>
+	    	              <option value="spontaneous">Spontaneous</option>
 	    	              <option value="oauth">OAuth</option>
+	    	              <option value="uma">UMA</option>
 	    	            </CustomInput>
 	    	          </InputGroup>
 	    	        </Col>
@@ -138,14 +165,16 @@ function ScopeForm({ item, handleSubmit }) {
 	    	            <CustomInput 
 	    	              type="select"
          	              id="umaAuthorizationPolicies"
-	    	              name="scopeType"
+	    	              name="authorizationPolicy"
 	    	              defaultValue={item.umaAuthorizationPolicies}
 	    	              onChange={formik.handleChange}
 	    	            >
 	    	              <option value="">Choose...</option>
 	    	              <option value="openid">OpenID</option>
-	    	              <option value="uma">UMA</option>
+	    	              <option value="dynamic">Dynamic</option>
+	    	              <option value="spontaneous">Spontaneous</option>
 	    	              <option value="oauth">OAuth</option>
+	    	              <option value="uma">UMA</option>
 	    	            </CustomInput>
 	    	          </InputGroup>
 	    	        </Col>
@@ -158,5 +187,14 @@ function ScopeForm({ item, handleSubmit }) {
 	    	  );
 	    	
 	  }
-export default ScopeForm;
+//export default ScopeForm;
+
+const mapStateToProps = state => {
+  return {
+	scripts: state.customScriptReducer.items,	  
+    loading: state.scopeReducer.loading,
+    hasApiError: state.scopeReducer.hasApiError
+  };
+};
+export default connect(mapStateToProps)(ScopeForm);
 

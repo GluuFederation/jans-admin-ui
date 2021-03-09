@@ -7,6 +7,7 @@ import {
   addCustomScriptResponse,
   editCustomScriptResponse,
   deleteCustomScriptResponse,
+  getCustomScriptByTypeResponse,
   setApiError,
 } from '../actions/CustomScriptActions'
 import {
@@ -14,6 +15,7 @@ import {
   ADD_CUSTOM_SCRIPT,
   EDIT_CUSTOM_SCRIPT,
   DELETE_CUSTOM_SCRIPT,
+  GET_CUSTOM_SCRIPT_BY_TYPE
 } from '../actions/types'
 import ScriptApi from '../api/ScriptApi'
 import { getClient } from '../api/base'
@@ -36,6 +38,18 @@ export function* addScript({ payload }) {
     const scriptApi = yield* newFunction()
     const data = yield call(scriptApi.addCustomScript, payload.data)
     yield put(addCustomScriptResponse(data))
+  } catch (error) {
+    yield put(setApiError(error))
+  }
+}
+
+//getScriptByType
+export function* getScriptByType({ payload }) {
+	console.log('Script Saga - getScriptByType() - payload.data = '+payload.data)
+  try {
+    const scriptApi = yield* newFunction()
+    const data = yield call(scriptApi.getCustomScriptByType, payload.data)
+    yield put(getCustomScriptByTypeResponse(data))
   } catch (error) {
     yield put(setApiError(error))
   }
@@ -86,6 +100,9 @@ export function* watchEditScript() {
 export function* watchDeleteScript() {
   yield takeLatest(DELETE_CUSTOM_SCRIPT, deleteScript)
 }
+export function* watchGetScriptByType() {
+	  yield takeLatest(GET_CUSTOM_SCRIPT_BY_TYPE, getScriptByType)
+	}
 
 export default function* rootSaga() {
   yield all([
@@ -93,5 +110,6 @@ export default function* rootSaga() {
     fork(watchAddScript),
     fork(watchEditScript),
     fork(watchDeleteScript),
+    fork(watchGetScriptByType),
   ])
 }
