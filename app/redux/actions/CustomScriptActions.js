@@ -54,9 +54,9 @@ export const getCustomScriptByInumResponse = data => ({
   payload: { data }
 });
 
-export const getCustomScriptByType = type => ({
+export const getCustomScriptByType = (type,opts) => ({
   type: GET_CUSTOM_SCRIPT_BY_TYPE,
-  payload: { type }
+  payload: { type,opts }
 });
 
 export const getCustomScriptByTypeResponse = data => ({

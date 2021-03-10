@@ -54,13 +54,15 @@ export default class ScriptApi {
   }
 
   //Get script by type
-  getCustomScriptByType = async (type) => {
-	  console.log(' ScriptApi getCustomScriptByType - '+type);
+  getCustomScriptByType = async (type,opts) => {
+	  console.log(' ScriptApi getCustomScriptByType - type = '+type+' , opts = '+opts);
     return new Promise((resolve, reject) => {
-      this.api.getConfigScriptsByType(type, (error, data) => {
+      this.api.getConfigScriptsByType('person_authentication', opts,  (error, data) => {
         if (error) {
           reject(error)
         } else {
+        	  console.log(' ScriptApi getCustomScriptByType - data ='+data);
+        	  console.log(' ScriptApi getCustomScriptByType - data ='+data.map);
           resolve(data)
         }
       })

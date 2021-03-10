@@ -20,8 +20,7 @@ import { getCustomScriptByType } from "../../../redux/actions/CustomScriptAction
 function ScopeForm({ item, handleSubmit,dispatch}) {
 	 useEffect(() => {		      
 		 const opts = {}
-		 opts["pattern"] = "UMA_RPT_POLICY";
-			 dispatch(getCustomScriptByType(opts))		    
+			 dispatch(getCustomScriptByType("UMA_RPT_POLICY",opts))		    
 			  }, [])
 		 
 	const [init, setInit] = useState(false);
@@ -164,17 +163,23 @@ function ScopeForm({ item, handleSubmit,dispatch}) {
 	    	          <InputGroup>
 	    	            <CustomInput 
 	    	              type="select"
+	    	            	  multiple
          	              id="umaAuthorizationPolicies"
 	    	              name="authorizationPolicy"
 	    	              defaultValue={item.umaAuthorizationPolicies}
 	    	              onChange={formik.handleChange}
-	    	            >
-	    	              <option value="">Choose...</option>
-	    	              <option value="openid">OpenID</option>
-	    	              <option value="dynamic">Dynamic</option>
-	    	              <option value="spontaneous">Spontaneous</option>
-	    	              <option value="oauth">OAuth</option>
-	    	              <option value="uma">UMA</option>
+	    	            >    	            
+	    	            {
+	    	            	//authorizationPolicy scripts
+	    	            	//mapStateToProps.scripts.map(script =>  <option key={script.name} value={script.name}>{script.name}</option>)
+	    	            	console.log('Form - this.props.scripts = '+this.props.scripts),
+	    	            	console.log('Form - this.props. loading = '+this.props. loading)
+	    	            	
+	    	            }
+	    	              /*<option  value="">Choose...</option>
+	    	              <option value="uma_rpt_policy">uma_rpt_policy</option>
+	    	              <option value="scim_access_policy">scim_access_policy</option>
+	    	              <option value="scim_access_policy">scim_access_policy</option>*/
 	    	            </CustomInput>
 	    	          </InputGroup>
 	    	        </Col>
@@ -190,6 +195,7 @@ function ScopeForm({ item, handleSubmit,dispatch}) {
 //export default ScopeForm;
 
 const mapStateToProps = state => {
+	console.log('ScopeForm mapStateToProps ')
   return {
 	scripts: state.customScriptReducer.items,	  
     loading: state.scopeReducer.loading,
