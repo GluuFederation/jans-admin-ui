@@ -22,7 +22,6 @@ module.exports = {
   mode: 'production',
   entry: {
     app: [path.join(config.srcDir, 'index.js')],
-    auth: [path.join(config.pluginsDir, 'auth-server/plugin-metadata.js')],
   },
   optimization: {
     moduleIds: 'named',
@@ -44,14 +43,24 @@ module.exports = {
       maxInitialRequests: 30,
       enforceSizeThreshold: 50000,
       cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
+        auth: {
+          test: /[\\/]plugins[\\/]auth-server[\\/]/,
           priority: -10,
           reuseExistingChunk: true,
         },
-        default: {
-          minChunks: 2,
-          priority: -20,
+        health: {
+          test: /[\\/]plugins[\\/]health-check[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        schema: {
+          test: /[\\/]plugins[\\/]schema[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        services: {
+          test: /[\\/]plugins[\\/]services-plugin[\\/]/,
+          priority: -10,
           reuseExistingChunk: true,
         },
       },
