@@ -22,6 +22,7 @@ module.exports = {
   mode: 'production',
   entry: {
     app: [path.join(config.srcDir, 'index.js')],
+    auth: [path.join(config.pluginsDir, 'auth-server/plugin-metadata.js')],
   },
   optimization: {
     moduleIds: 'named',
